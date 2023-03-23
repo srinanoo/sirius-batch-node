@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="images/close-1.png" rel="icon" type="image/png">
+    <title>Document</title>
+</head>
+<body>
+
+    <form onsubmit="return validate();">
+        <!-- <input type="hidden" name="hfSub" 
+        value="login"> -->
+        <input type="hidden" name="hfSub" 
+        value="registration">
+        <input type="text" name="username"><span id="username"></span><br>
+        <input type="password" name="password"><span id="password"></span><br>
+        <input type="text" name="name"><span id="name"></span><br>
+        <input type="number" name="age"><span id="age"></span><br>
+        <input type="submit">
+    </form>
+
+    <script>
+        function validate() {
+            let flag = true;
+            if(document.forms[0].username.value==""){
+                document.querySelector("#username").style.color = "red";
+                document.querySelector("#username").innerHTML = "Enter Username.";
+                flag = false;
+            } else {
+                document.querySelector("#username").innerHTML = "";
+            }
+
+            if(document.forms[0].password.value==""){
+                document.querySelector("#password").style.color = "red";
+                document.querySelector("#password").innerHTML = "Enter Password.";
+                flag = true;
+            } else {
+                document.querySelector("#password").innerHTML = "";
+            }
+
+            if(document.forms[0].name.value==""){
+                document.querySelector("#name").style.color = "red";
+                document.querySelector("#name").innerHTML = "Enter Name.";
+                flag = false;
+            } else {
+                document.querySelector("#name").innerHTML = "";
+            }
+
+            if(document.forms[0].age.value=="" || document.forms[0].age.value<=18){
+                document.querySelector("#age").style.color = "red";
+                document.querySelector("#age").innerHTML = "Enter Age greater than 18.";
+                flag = false;
+            } else {
+                document.querySelector("#age").innerHTML = "";
+            }
+
+            if(flag) {
+                document.forms[0].action = "http://localhost:4000"
+                return true;
+            } else 
+                return false;
+        }
+    </script>
+    
+</body>
+</html>
